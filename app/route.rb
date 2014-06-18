@@ -7,7 +7,12 @@ class Route
   end
 
   def driving_distance
-    map.driving_distance(locations.first, locations.last)
+    previous_location = locations.shift
+    locations.reduce(0) do |total_distance, next_location|
+      total_distance += map.driving_distance(previous_location, next_location)
+      previous_location = next_location
+      total_distance
+    end
   end
 
   private
