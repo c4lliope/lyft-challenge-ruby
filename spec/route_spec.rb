@@ -1,9 +1,9 @@
 require_relative '../app/route'
 
 describe Route do
-  let(:pier_39) { Location.new(37.808673, -122.409821) }
-  let(:lombard) { Location.new(37.802139 , -122.41874) }
-  let(:sutro_heights) { Location.new(37.777794 , -122.511107) }
+  let(:pier_39) { Location.new(37.808673, -122.409821, 'Pier 39') }
+  let(:lombard) { Location.new(37.802139 , -122.41874, 'Lombard St') }
+  let(:sutro_heights) { Location.new(37.777794 , -122.511107, 'Sutro Heights Park') }
 
   context 'when defined by two locations' do
     it 'calculates driving distance' do
