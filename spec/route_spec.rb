@@ -5,6 +5,14 @@ describe Route do
   let(:lombard) { Location.new(37.802139 , -122.41874, 'Lombard St') }
   let(:sutro_heights) { Location.new(37.777794 , -122.511107, 'Sutro Heights Park') }
 
+  context 'with only one location' do
+    it 'returns 0 distance' do
+      fake_map = double
+      route = Route.new([pier_39], fake_map)
+      expect(route.driving_distance).to eq 0
+    end
+  end
+
   context 'when defined by two locations' do
     it 'calculates driving distance' do
       fake_map = double
