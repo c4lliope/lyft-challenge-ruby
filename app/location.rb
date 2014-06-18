@@ -1,8 +1,9 @@
 class Location
-  def initialize latitude, longitude
+  def initialize latitude, longitude, name=''
     @latitude = latitude
     @longitude = longitude
+    @name = name
   end
 
-  attr_reader :latitude, :longitude
+  attr_reader :latitude, :longitude, :name
 end
