@@ -4,8 +4,7 @@ require 'json'
 class GoogleMap
   def driving_distance origin, destination
     response = Request.new(origin, destination).response
-    distance_metric = response['rows'].first['elements'].first['distance']['value']
-    distance_metric * 0.000621371
+    response['rows'].first['elements'].first['distance']['value']
   end
 
   private
