@@ -1,18 +1,10 @@
 require_relative 'app/resolver'
 require_relative 'app/google_map'
-
-def display_routes routes
-  puts
-  routes.each_with_index do |route, index|
-    puts "Driver #{index+1}:"
-    route.locations.each do |location|
-      puts "  #{location.name} #{location.coordinate_string}"
-    end
-  end
-  puts
-end
+require_relative 'app/helpers'
 
 begin
+  invalid_usage unless ARGV.count == 8
+  ARGV.each { |arg| invalid_usage unless arg.is_number? }
   map = GoogleMap.new
 
   routes = ARGV.each_slice(4).each_with_index.map do |route_coords, route_index|
@@ -30,4 +22,8 @@ begin
   route = resolver.shortest_route
 
   puts "The shortest route possible with one driver picking up another is #{route.to_s}"
+rescue GoogleMap::LocationNotFoundError
+  puts "Sorry, we couldn't find a location matching your coordinates"
+rescue GoogleMap::APIError
+  puts "Hrmm... looks like there's a problem with the API right now. Try again later."
 end

@@ -13,7 +13,7 @@ class GoogleMap
   private
   def ensure_valid_response response
     unless response['status'] == 'OK'
-      raise GoogleMapsAPIError
+      raise APIError
     end
   end
 
@@ -53,6 +53,6 @@ class GoogleMap
 
   class LocationNotFoundError < StandardError
   end
-  class GoogleMapsAPIError < StandardError
+  class APIError < StandardError
   end
 end
