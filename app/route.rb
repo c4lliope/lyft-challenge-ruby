@@ -6,16 +6,18 @@ class Route
     @map = map
   end
 
-  def driving_distance
-    sum_driving_distance(intermediate_routes)
+  def distance
+    sum_distance(intermediate_routes)
   end
 
   private
   attr_reader :map, :locations
 
-  def sum_driving_distance routes
+  private
+
+  def sum_distance routes
     routes.reduce(0) do |total_distance, intermediate_route|
-      total_distance + intermediate_route.driving_distance
+      total_distance + intermediate_route.distance
     end
   end
 
@@ -39,8 +41,8 @@ class Route
       @map = map
     end
 
-    def driving_distance
-      map.driving_distance(origin, destination)
+    def distance
+      map.distance(origin, destination)
     end
 
     attr_reader :origin, :destination, :map

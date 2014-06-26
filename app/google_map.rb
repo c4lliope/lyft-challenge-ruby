@@ -2,7 +2,7 @@ require 'httparty'
 require 'json'
 
 class GoogleMap
-  def driving_distance origin, destination
+  def distance origin, destination
     response = Request.new(origin, destination).response
     response['rows'].first['elements'].first['distance']['value']
   end

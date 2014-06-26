@@ -6,4 +6,5 @@ class Location
   end
 
   attr_reader :latitude, :longitude, :name
+  alias to_s name
 end

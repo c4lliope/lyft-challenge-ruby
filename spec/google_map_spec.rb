@@ -7,7 +7,7 @@ describe GoogleMap do
     pier_39 = double(latitude: 37.808673, longitude: -122.409821)
     lombard = double(latitude: 37.802139 , longitude: -122.41874)
 
-    expect(subject.driving_distance(pier_39, lombard)).to eq 1997
+    expect(subject.distance(pier_39, lombard)).to eq 1997
   end
 end
 
