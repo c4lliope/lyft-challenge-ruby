@@ -4,10 +4,19 @@ require 'json'
 class GoogleMap
   def distance origin, destination
     response = Request.new(origin, destination).response
+    ensure_valid_response response
     response['rows'].first['elements'].first['distance']['value']
+  rescue NoMethodError
+    raise LocationNotFoundError
   end
 
   private
+  def ensure_valid_response response
+    unless response['status'] == 'OK'
+      raise GoogleMapsAPIError
+    end
+  end
+
   class Request
     def initialize(origin, destination)
       @origin = origin
@@ -40,5 +49,10 @@ class GoogleMap
     def base_url
       "https://maps.googleapis.com/maps/api/distancematrix/json"
     end
+  end
+
+  class LocationNotFoundError < StandardError
+  end
+  class GoogleMapsAPIError < StandardError
   end
 end
