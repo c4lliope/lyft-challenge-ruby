@@ -23,7 +23,7 @@ class Route
     [].tap do |intermediate_routes|
       destinations.each do |destination|
         origin = intermediate_routes.last.destination rescue locations.first
-        intermediate_routes << SimpleRoute.new(origin, destination, map)
+        intermediate_routes << Leg.new(origin, destination, map)
       end
     end
   end
@@ -32,7 +32,7 @@ class Route
     locations[1..-1]
   end
 
-  class SimpleRoute
+  class Leg
     def initialize(origin, destination, map)
       @origin = origin
       @destination = destination
