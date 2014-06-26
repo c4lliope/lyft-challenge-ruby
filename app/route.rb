@@ -10,7 +10,23 @@ class Route
     sum_distance(intermediate_routes)
   end
 
-  private
+  def origin
+    locations.first
+  end
+
+  def destination
+    locations.last
+  end
+
+  def to_s
+    "from " + locations.map(&:to_s).join(" to ")
+  end
+
+  def ==(o)
+    o.class == self.class && o.locations == @locations && o.map == @map
+  end
+  alias_method :eql?, :==
+
   attr_reader :map, :locations
 
   private

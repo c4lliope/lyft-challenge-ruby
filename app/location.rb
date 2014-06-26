@@ -6,5 +6,12 @@ class Location
   end
 
   attr_reader :latitude, :longitude, :name
-  alias to_s name
+
+  def to_s
+    name
+  end
+
+  def coordinate_string
+    "(#{latitude},#{longitude})"
+  end
 end
